@@ -102,12 +102,12 @@ function Home() {
                 </div>
 
                 <div className={styles.customer_details}>
-                    <h1>Customer Details</h1>
+                    <h1 style={{fontStyle:"oblique"}}>Customer Details</h1>
                     {activeCard >= 0 && (
                         <div>
                             <div className={styles.details}>
                                 <img className={styles.proImage} src={customerDetails?.image} alt='profile' />
-                                <h1 style={{fontWeight:"normal", fontFamily:"sans-serif"}}>{customerDetails?.firstName + " " + customerDetails?.lastName}</h1>
+                                <h1 style={{fontWeight:"normal", fontFamily:"italic"}}>{customerDetails?.firstName + " " + customerDetails?.lastName}</h1>
                                 <p>Email : {customerDetails?.email} , Phone : {customerDetails?.phone}</p>
                                 <p>Address : {customerDetails?.address.address}, {customerDetails?.address.city}, {customerDetails?.address.state}, PostalCode : {customerDetails?.address.postalCode}</p>
                             </div>
@@ -120,7 +120,7 @@ function Home() {
                     )}
                     {activeCard < 0 &&(
                         <div>
-                            <h2>Please click on Customer Card to See all the Details.</h2>
+                            <h2 style={{fontWeight:"normal"}}>Please click on Customer Card to See all the Details.</h2>
                         </div>
                     )}
 

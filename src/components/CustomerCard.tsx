@@ -30,7 +30,7 @@ function CustomerCard({
     }} className={styles.customer_card} onClick={()=>{
         handleCardClick(id)
     }}>
-        <h3>{id + ". " + firstName + " " + maidenName + " " + lastName}</h3>
+        <h3 style={{fontFamily:"italic"}}>{id + ". " + firstName + " " + maidenName + " " + lastName}</h3>
         <p>{email}</p>
         <p>{address.address + ", " + address.city + ", " + address.state + ", " + address.postalCode}</p>
     </div>
