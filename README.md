@@ -5,6 +5,7 @@ Basically it's a single page application, created by using react and Typescript.
 ## Deployed Link
 
 Assignment link :- [here](https://cube-jade.vercel.app/).
+Backend json link :-(https://json-server-user-jbu6.onrender.com/users)
 
 ## Directory Structure
 todo-/
@@ -15,7 +16,7 @@ todo-/
    ├─app.js
 
 ## video of project
-Project video link [here]()
+Project video link [here](https://drive.google.com/file/d/1jbZuOONyzhh2FNlbyMB3s-ho3FL4_qiS/view?usp=sharing)
 
 ## Features
 - Get Data from api
