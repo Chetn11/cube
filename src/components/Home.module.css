@@ -1,0 +1,20 @@
+.container{
+    margin: auto;
+    padding: 70px;
+    display: flex;
+    flex-direction: row;
+}
+
+.customer_list{
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.customer_card{
+    padding: 10px;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+    transition: all 0.3s ease-out;
+}
+.customer_card:hover{
+transform: scale(1.1);
+}
