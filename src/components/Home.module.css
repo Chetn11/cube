@@ -28,3 +28,21 @@ transform: scale(1.1);
 .customer_details .proImage{
     width: 100px;
 }
+.customer_details .AllPhotos {
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns:repeat(3,0.5fr) ;
+    gap: 20px;
+    transition: all 0.5s ease-out;
+}
+.customer_details .AllPhotos img{
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+}
+
+.customer_details .AllPhotos img:hover{
+    transform: scale(1.1);
+}

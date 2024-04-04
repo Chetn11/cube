@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import styles from "./Home.module.css"
 import axios from 'axios'
 
+
+
+// url = https://api.unsplash.com/photos/random/?client_id=29I-ulTLD6Ue90RCCxRkfpHnqOCbcxuTkR8aDsvCcO8&count=9
 interface CustomerList {
     id: number,
     firstName: string,
@@ -23,11 +26,15 @@ interface CustomerData {
     image: string
 }
 
+interface Images{
+    urls:any
+}
 function Home() {
 
     const [customer, setCustomer] = useState<CustomerList[]>([]);
     const [selectedCustomerId, setSelectedCustomerId] = useState<number | null>(null);
     const [customerDetails, setCustomerDetails] = useState<CustomerData>();
+    const [photos, setPhotos] = useState<Images[]>([]);
     const getData = async () => {
         try {
             const res = await axios.get("https://dummyjson.com/users")
@@ -57,13 +64,26 @@ function Home() {
 
             }
         }
+
+        const img=async ()=>{
+            try {
+                const imgRes=await axios.get("https://api.unsplash.com/photos/random/?client_id=29I-ulTLD6Ue90RCCxRkfpHnqOCbcxuTkR8aDsvCcO8&count=9");
+                // console.log(imgRes);
+                setPhotos(imgRes.data as Images[])
+            } catch (error) {
+                
+            }
+        }
         if (selectedCustomerId !== null) {
             details();
+            img();
+           
         }
 
     }, [selectedCustomerId])
     console.log(customer);
     console.log(customerDetails);
+    console.log(photos);
     return (
         <div className={styles.main}>
             <div className={styles.container}>
@@ -80,10 +100,17 @@ function Home() {
                 <div className={styles.customer_details}>
                     {selectedCustomerId !== null && (
                         <div>
+                            <div className={styles.details}>
                             <img className={styles.proImage} src={customerDetails?.image} alt='profile' />
                             <h1>{customerDetails?.firstName + " " + customerDetails?.lastName}</h1>
                             <p>Email : {customerDetails?.email} , Phone : {customerDetails?.phone}</p>
                             <p>Address : {customerDetails?.address.address}, {customerDetails?.address.city}, {customerDetails?.address.state}, PostalCode : {customerDetails?.address.postalCode}</p>
+                            </div>
+                            <div className={styles.AllPhotos}>
+                                {photos?.map((ele,i)=>(
+                                        <img src={ele.urls.small_s3} alt=''/>
+                                ))}
+                            </div>
                         </div>
                     )}
 
