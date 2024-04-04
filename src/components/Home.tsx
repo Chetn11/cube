@@ -5,7 +5,6 @@ import CustomerCard from './CustomerCard'
 
 
 
-// url = https://api.unsplash.com/photos/random/?client_id=29I-ulTLD6Ue90RCCxRkfpHnqOCbcxuTkR8aDsvCcO8&count=9
 interface CustomerList {
     id: number,
     firstName: string,
@@ -27,14 +26,14 @@ interface CustomerData {
     image: string
 }
 
-// interface Images{
-//     url:any
-// }
+
 function Home() {
 
     const [customer, setCustomer] = useState<CustomerList[]>([]);
     const [customerDetails, setCustomerDetails] = useState<CustomerData>();
     const [photos, setPhotos] = useState<string[]>([]);
+
+    // for userList
     const getData = async () => {
         try {
             const res = await axios.get("https://json-server-user-jbu6.onrender.com/users")
@@ -56,6 +55,8 @@ function Home() {
     }, [])
     // console.log(selectedCustomerId);
     useEffect(() => {
+
+        // for single user details
         const details = async () => {
             try {
                 const res = await axios.get(`https://json-server-user-jbu6.onrender.com/users/${activeCard}`);
@@ -66,15 +67,16 @@ function Home() {
             }
         }
 
-        const img=async ()=>{
+        // for images
+        const img = async () => {
             // const page=Math.floor(Math.random()*())
             try {
-                const imgRes=await axios.get("https://api.thedogapi.com/v1/images/search?limit=10");
+                const imgRes = await axios.get("https://api.thedogapi.com/v1/images/search?limit=10");
                 console.log(imgRes.data);
-                const data:string[] = imgRes?.data?.map((objects:any)=>objects.url) || ["xyz"];
-                setPhotos(data.slice(0,9))
+                const data: string[] = imgRes?.data?.map((objects: any) => objects.url) || ["xyz"];
+                setPhotos(data.slice(0, 9))
             } catch (error) {
-                
+
             }
         }
 
@@ -83,10 +85,10 @@ function Home() {
         if (activeCard >= 0) {
             details();
             img();
-            intervalId = setInterval(img , 10000)
+            intervalId = setInterval(img, 10000)
         }
 
-        return ()=>{
+        return () => {
             clearInterval(intervalId)
         }
 
@@ -98,29 +100,29 @@ function Home() {
         <div className={styles.main}>
             <div className={styles.container}>
                 <div className={styles.customer_list}>
-                    {customer?.map((ele: CustomerList, i:number) => (<CustomerCard bgColor={i+1 === activeCard? "gray": "white"} handleCardClick={handleCardClick} key={i} {...ele} />))}
+                    {customer?.map((ele: CustomerList, i: number) => (<CustomerCard bgColor={i + 1 === activeCard ? "gray" : "white"} handleCardClick={handleCardClick} key={i} {...ele} />))}
                 </div>
 
                 <div className={styles.customer_details}>
-                    <h1 style={{fontStyle:"oblique"}}>Customer Details</h1>
+                    <h1 style={{ fontStyle: "oblique" }}>Customer Details</h1>
                     {activeCard >= 0 && (
                         <div>
                             <div className={styles.details}>
                                 <img className={styles.proImage} src={customerDetails?.image} alt='profile' />
-                                <h1 style={{fontWeight:"normal", fontFamily:"italic"}}>{customerDetails?.firstName + " " + customerDetails?.lastName}</h1>
+                                <h1 style={{ fontWeight: "normal", fontFamily: "italic" }}>{customerDetails?.firstName + " " + customerDetails?.lastName}</h1>
                                 <p>Email : {customerDetails?.email} , Phone : {customerDetails?.phone}</p>
                                 <p>Address : {customerDetails?.address.address}, {customerDetails?.address.city}, {customerDetails?.address.state}, PostalCode : {customerDetails?.address.postalCode}</p>
                             </div>
                             <div className={styles.AllPhotos}>
-                                {photos?.map((url:string,i:number)=>(
-                                    <img src={url} alt={customerDetails?.firstName} key={i}/>
+                                {photos?.map((url: string, i: number) => (
+                                    <img src={url} alt={customerDetails?.firstName} key={i} />
                                 ))}
                             </div>
                         </div>
                     )}
-                    {activeCard < 0 &&(
+                    {activeCard < 0 && (
                         <div>
-                            <h2 style={{fontWeight:"normal"}}>Please click on Customer Card to See all the Details.</h2>
+                            <h2 style={{ fontWeight: "normal" }}>Please click on Customer Card to See all the Details.</h2>
                         </div>
                     )}
 
