@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react'
 import styles from "./Home.module.css"
 import axios from 'axios'
 import CustomerCard from './CustomerCard'
+import InfiniteScroll from 'react-infinite-scroller'
 
 
 
@@ -36,7 +37,7 @@ function Home() {
     // for userList
     const getData = async () => {
         try {
-            const res = await axios.get("https://json-server-user-jbu6.onrender.com/users")
+            const res = await axios.get("https://energetic-tick-dirndl.cyclic.app/users")
             // console.log(res);
             setCustomer(res.data as CustomerList[])
         } catch (error) {
@@ -59,7 +60,7 @@ function Home() {
         // for single user details
         const details = async () => {
             try {
-                const res = await axios.get(`https://json-server-user-jbu6.onrender.com/users/${activeCard}`);
+                const res = await axios.get(`https://energetic-tick-dirndl.cyclic.app/users/${activeCard}`);
                 // console.log(res);
                 setCustomerDetails(res.data as CustomerData)
             } catch (error) {

@@ -5,7 +5,7 @@ Basically it's a single page application, created by using react and Typescript.
 ## Deployed Link
 
 Assignment link :- [here](https://cube-jade.vercel.app/).
-Backend json link :-(https://json-server-user-jbu6.onrender.com/users)
+Backend json link :-(https://energetic-tick-dirndl.cyclic.app/users)
 
 ## Directory Structure
 todo-/
