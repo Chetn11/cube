@@ -27,7 +27,7 @@ interface CustomerData {
 }
 
 interface Images{
-    urls:any
+    url:any
 }
 function Home() {
 
@@ -67,9 +67,9 @@ function Home() {
 
         const img=async ()=>{
             try {
-                const imgRes=await axios.get("https://api.unsplash.com/photos/random/?client_id=29I-ulTLD6Ue90RCCxRkfpHnqOCbcxuTkR8aDsvCcO8&count=9");
-                // console.log(imgRes);
-                setPhotos(imgRes.data as Images[])
+                const imgRes=await axios.get("https://api.slingacademy.com/v1/sample-data/photos?limit=9");
+                // console.log(imgRes.data.photos);
+                setPhotos(imgRes.data.photos as Images[])
             } catch (error) {
                 
             }
@@ -77,6 +77,7 @@ function Home() {
         if (selectedCustomerId !== null) {
             details();
             img();
+            // setInterval(img,10000)
            
         }
 
@@ -90,7 +91,7 @@ function Home() {
                 <div className={styles.customer_list}>
                     {customer?.map((ele, i) => (
                         <div className={styles.customer_card} key={i} onClick={() => handelCustomer(ele.id)}>
-                            <h3>{ele.id + " " + ele.firstName + " " + ele.maidenName + " " + ele.lastName}</h3>
+                            <h3>{ele.id + ". " + ele.firstName + " " + ele.maidenName + " " + ele.lastName}</h3>
                             <p>{ele.email}</p>
                             <p>{ele.address.address + ", " + ele.address.city + ", " + ele.address.state + ", " + ele.address.postalCode}</p>
                         </div>
@@ -98,19 +99,25 @@ function Home() {
                 </div>
 
                 <div className={styles.customer_details}>
+                    <h1>Customer Details</h1>
                     {selectedCustomerId !== null && (
                         <div>
                             <div className={styles.details}>
                             <img className={styles.proImage} src={customerDetails?.image} alt='profile' />
-                            <h1>{customerDetails?.firstName + " " + customerDetails?.lastName}</h1>
+                            <h1 style={{fontWeight:"normal", fontFamily:"sans-serif"}}>{customerDetails?.firstName + " " + customerDetails?.lastName}</h1>
                             <p>Email : {customerDetails?.email} , Phone : {customerDetails?.phone}</p>
                             <p>Address : {customerDetails?.address.address}, {customerDetails?.address.city}, {customerDetails?.address.state}, PostalCode : {customerDetails?.address.postalCode}</p>
                             </div>
                             <div className={styles.AllPhotos}>
                                 {photos?.map((ele,i)=>(
-                                        <img src={ele.urls.small_s3} alt=''/>
+                                        <img src={ele.url} alt=''/>
                                 ))}
                             </div>
+                        </div>
+                    )}
+                    {selectedCustomerId===null &&(
+                        <div>
+                            <h2>Please click on Customer Card to See all the Details.</h2>
                         </div>
                     )}
 
