@@ -37,20 +37,20 @@ To use  App locally->
 
 Screen Shots
 
-![Screenshot 1]()
+
 
 1. Initial state of app.
-![Screenshot 1]()
+![Screenshot 1](https://github.com/Chetn11/cube/blob/main/src/images/ss1.PNG)
 
 2. After selecting on card
-![Screenshot 1]()
+![Screenshot 1](https://github.com/Chetn11/cube/blob/main/src/images/ss2.PNG)
 
 3. Scroll feature
-![Screenshot 1]()
+![Screenshot 1](https://github.com/Chetn11/cube/blob/main/src/images/ss3.PNG)
 
 4. Small Screen
-![Screenshot 1]()
-![Screenshot 1]()
+![Screenshot 1](https://github.com/Chetn11/cube/blob/main/src/images/ss5.PNG)
+![Screenshot 2](https://github.com/Chetn11/cube/blob/main/src/images/ss4.PNG)
 
 
 ## Tech Stack
